@@ -1,0 +1,539 @@
+@font-face {
+    font-family: 'Jost';
+    src: url('./fonts/Jost-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+** Нормализация блочной модели */ *,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+    padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+    margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul,
+    ol,
+    dl):where([class]) {
+    margin-block: 0;
+}
+
+:where(dd[class]) {
+    margin-left: 0;
+}
+
+:where(fieldset[class]) {
+    margin-left: 0;
+    padding: 0;
+    border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+    list-style: none;
+}
+
+:where(address[class]) {
+    font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+    --paragraphMarginBottom: 24px;
+
+    margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+    margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+html {
+    /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+    height: 100%;
+    /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+    scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+    scroll-behavior: smooth;
+}
+
+body {
+    /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+    min-height: 100%;
+    /**
+    Унифицированный интерлиньяж
+   */
+    line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+    display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+    cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill="none"],
+        [fill^="url"])) {
+    fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke="none"],
+        [stroke^="url"])) {
+    stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+    transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+    border-collapse: collapse;
+    border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.margin-bottom {
+    margin-bottom: 150px;
+}
+
+.visually-hidden {
+
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+
+}
+
+
+:root {
+    --color-dark: black;
+    --color-light: white;
+
+    --font-family-base: 'Jost', 'sans-serif';
+    --border-radius: 50%;
+
+    --transition-duration: 0.2s;
+
+}
+
+
+
+
+
+body {
+
+    background: linear-gradient(90deg, rgb(22, 28, 202), rgb(186, 41, 41));
+    font-family: var(--font-family-base);
+    color: var(--color-light);
+    padding-inline: 15px;
+}
+
+a {
+   color: var(--color-light);
+    text-decoration: none;
+    transition-duration: var(--transition-duration);
+}
+
+a:hover {
+   /*  color: gray; */
+   font-size: 25px;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    column-gap: 30px;
+}
+
+
+.header-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+
+
+}
+
+
+
+.soc1als {
+    padding-top: 10px;
+}
+
+.soc1als-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+
+}
+
+.soc1als-link::before {
+    position: absolute;
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    z-index: -1;
+
+
+}
+
+.soc1als-link {
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+
+}
+
+.soc1als-link:hover {
+    background-color:gray;
+    transition-duration: var(--transition-duration);
+}
+
+/* 
+ .project {
+    margin-inline: 10px;
+}
+
+.project-title {
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-self: center;
+    column-gap: 21em;
+}
+
+.project-item {
+    width: 400px;
+
+
+}
+
+.project-inner {
+    padding: 20px;
+    border: 1.5px solid var(--color-light);
+    border-radius: 8%;
+     height: 207px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.project-subtitle {
+    font-size: 30px;
+}
+
+.project-link {
+    padding-top: 10px;
+    font-size: 30px;
+
+
+}
+
+
+.future {
+    margin-block: 30px;
+
+}
+
+.future:hover {
+    opacity: 0.7;
+
+}
+    
+*/
+
+.project-title{
+    font-size: 60px;
+    margin-bottom: 50px;
+}
+.project-item{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.project-card {
+    display: flex;
+    column-gap: 30px;
+   
+    word-wrap: break-word;
+   
+}
+
+.project-image{
+    border-radius: 9%;
+    width: 454px;
+    height: 410px;
+}
+
+
+
+.project-description{
+    max-width: 500px;
+}
+.project-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid var(--color-light);   
+    border-bottom: 1px solid var(--color-light);   
+    border-left: none;
+    border-radius: 9%;
+    padding: 10px;
+    width: 454px;
+    
+    
+  
+}
+
+.info{
+    font-size: 20px;
+    padding-top: 10px;
+}
+.tecnologes-list {
+    display: flex;
+    
+}
+.tecnologes-item{
+    width: 48px;
+    height: 48px;
+}
+.project-link{
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+    position: relative;
+    margin-bottom: 100px;
+}
+.project-link:hover{
+    font-size: 30px;
+}
+
+.project-link::after{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(./images/strelka.svg) center/contain no-repeat;
+    margin-top: 10px;
+    margin-left: 5px;
+
+   
+}
+.project-link:hover::after{
+    width: 30px;
+    height: 30px;
+    transition-duration:0.2s ;
+}
+
+
+@media (max-width:1024px) {
+    .header-inner {
+        flex-wrap: wrap;
+        padding-inline: 20px;
+
+
+
+
+        .header-logo {
+            margin-right: 100px;
+
+        }
+
+        .navigation {
+            order: 1;
+            width: 300px;
+
+
+
+        }
+
+        .soc1als {
+            margin-inline: 30px;
+
+        }
+    }
+}
+
+
+
+@media(max-width:905px) {
+    .header-logo {
+        margin-right: 0;
+
+    }
+
+    .soc1als {
+        margin-inline: 0;
+
+    }
+
+}
+
+@media(max-width:707px) {
+    .navigation {
+        margin-top: 20px;
+        margin-inline: auto;
+
+    }
+
+    @media (max-width:500px) {
+        .header-inner {
+            column-gap: 10px;
+        }
+
+        .header-title {
+            font-size: 1.8em;
+        }
+
+
+
+    }
+
+    .header-list {
+        column-gap: 30px;
+
+
+
+
+    }
+
+}
