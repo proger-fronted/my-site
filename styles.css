@@ -258,7 +258,7 @@ a {
 
 a:hover {
     /*  color: gray; */
-    font-size: 25px;
+    opacity: 0.7;
 }
 
 .header-inner {
@@ -319,65 +319,7 @@ a:hover {
     transition-duration: var(--transition-duration);
 }
 
-/* 
- .project {
-    margin-inline: 10px;
-}
 
-.project-title {
-    margin-bottom: 50px;
-    font-size: 40px;
-}
-
-.project-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-self: center;
-    column-gap: 21em;
-}
-
-.project-item {
-    width: 400px;
-
-
-}
-
-.project-inner {
-    padding: 20px;
-    border: 1.5px solid var(--color-light);
-    border-radius: 8%;
-     height: 207px; 
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.project-subtitle {
-    font-size: 30px;
-}
-
-.project-link {
-    padding-top: 10px;
-    font-size: 30px;
-
-
-}
-
-
-.future {
-    margin-block: 30px;
-
-}
-
-.future:hover {
-    opacity: 0.7;
-
-}
-    
-*/
 
 .project-title {
     font-size: 60px;
@@ -472,6 +414,87 @@ a:hover {
     transition-duration: 0.2s;
 }
 
+.stack-title {
+    margin-bottom: 80px;
+    font-size: 60px;
+}
+
+.stack-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 80px;
+
+}
+
+.stack-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.center {
+    border-radius: 8%;
+    padding: 10px;
+    border: 1px solid var(--color-light);
+    transition-duration: var(--transition-duration);
+
+
+}
+
+.stack-image {
+    width: 180px;
+}
+
+.stack-info {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.stack-link{
+    display: flex;
+    justify-content: center;
+    margin-block: 10px;
+    
+}
+
+.stack-link::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: url(./images/strelka.svg) center / contain no-repeat;
+    white-space: nowrap;
+    margin-left:10px ;
+   
+}
+
+
+.stack-card1:hover {
+    border-color: #F54927;
+}
+
+.stack-card2:hover {
+    border-color: #264DE4;
+}
+
+.stack-card3:hover {
+    border-color: #CC6699;
+}
+
+.stack-card4:hover {
+    border-color: var(--color-dark);
+}
+
+.stack-card5:hover {
+    border-color: #BFC902;
+}
+
+.stack-card6:hover {
+    border-color: #FF2626;
+}
+
 
 @media (max-width:1024px) {
     .header-inner {
@@ -545,15 +568,17 @@ a:hover {
         column-gap: 30px;
 
     }
-.project-card{
-     max-width: 100%;
+
+    .project-card {
+        max-width: 100%;
         height: auto;
-        
-}
+
+    }
+
     .project-body {
         max-width: 100%;
         height: auto;
-        
+
     }
 
     .project-image {
